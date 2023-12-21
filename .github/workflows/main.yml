@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Checkout the repository
-      - uses: ./.github/hello-action
+      - uses: ./
         name: Hello world action step
         id: hello
         with:
