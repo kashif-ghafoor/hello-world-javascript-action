@@ -12,6 +12,9 @@ jobs:
         id: hello
         with:
           who-to-greet: "Kashif Ghafoor"
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        env:
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
