@@ -30798,9 +30798,9 @@ try {
   const nameToGreet = core.getInput("who-to-greet");
   console.log(`Hello ${nameToGreet}!`);
   const notionToken = core.getInput("NOTION_TOKEN");
-  console.log(`NOTION_TOKEN ${notionToken}`);
+  console.log(`NOTION_TOKEN ${JSON.stringify(notionToken)}`);
   const githubToken = process.env.GIT_TOKEN;
-  console.log(`GIT_TOKEN ${githubToken}`);
+  console.log(`GIT_TOKEN ${JSON.stringify(githubToken)}`);
   const time = new Date().toTimeString();
   core.setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
