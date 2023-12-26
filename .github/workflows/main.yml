@@ -29,5 +29,5 @@ jobs:
           labels: |
             automated pr
             greet update
-          reviewers: kashif-ghafoor
+          # reviewers: kashif-ghafoor
           draft: false
