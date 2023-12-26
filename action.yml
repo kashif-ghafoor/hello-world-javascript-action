@@ -5,9 +5,6 @@ inputs:
     description: "Who to greet"
     required: true
     default: "World"
-  NOTION_TOKEN:
-    description: "Notion token"
-    required: true
 outputs:
   time: # id of output
     description: "The time we greeted you"

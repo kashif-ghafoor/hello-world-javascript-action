@@ -3,7 +3,7 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to write greeting to the greet.txt file then create a pull request with the changes
     steps:
       - uses: actions/checkout@v2
         name: Checkout the repository
@@ -12,9 +12,22 @@ jobs:
         id: hello
         with:
           who-to-greet: "Kashif Ghafoor"
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-        env:
-          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
       # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+      - name: create pull request
+        id: cpr
+        uses: peter-evans/create-pull-request@v5.0.2
+        with:
+          token: ${{ secrets.PAT }}
+          commit-message: "Update greet.txt"
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          branch: greet-update-${{ github.run_id }}
+          title: Update greet.txt
+          body: |
+            This is an automated PR created by a GitHub Action.
+            The greeting has been updated to: ${{ steps.hello.outputs.greeting }}
+          labels: |
+            automated pr
+            greet update
+          reviewers: kashif-ghafoor
+          draft: false
